@@ -9,12 +9,9 @@ import 'package:da_assessment/core/entites/base_entity.dart' as _i8;
 import 'package:da_assessment/core/errors/base_error.dart' as _i10;
 import 'package:da_assessment/core/models/base_model.dart' as _i7;
 import 'package:da_assessment/core/results/result.dart' as _i2;
-import 'package:da_assessment/feautre/log_in/domain/entity/user_entity.dart'
-    as _i5;
-import 'package:da_assessment/feautre/log_in/domain/repository/user_repository.dart'
-    as _i3;
-import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart'
-    as _i6;
+import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart' as _i5;
+import 'package:da_assessment/feautre/log_in/domain/repository/user_repository.dart' as _i3;
+import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -41,8 +38,7 @@ class _FakeResult_0<Data> extends _i1.SmartFake implements _i2.Result<Data> {
         );
 }
 
-class _FakeRemoteResult_1<Data> extends _i1.SmartFake
-    implements _i2.RemoteResult<Data> {
+class _FakeRemoteResult_1<Data> extends _i1.SmartFake implements _i2.RemoteResult<Data> {
   _FakeRemoteResult_1(
     Object parent,
     Invocation parentInvocation,
@@ -61,16 +57,13 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   }
 
   @override
-  _i4.Future<_i2.Result<_i5.UserEntity>> login(
-          {required _i6.LogInParams? params}) =>
-      (super.noSuchMethod(
+  _i4.Future<_i2.Result<_i5.LoginResponseEntity>> login({required _i6.LogInParams? params}) => (super.noSuchMethod(
         Invocation.method(
           #login,
           [],
           {#params: params},
         ),
-        returnValue: _i4.Future<_i2.Result<_i5.UserEntity>>.value(
-            _FakeResult_0<_i5.UserEntity>(
+        returnValue: _i4.Future<_i2.Result<_i5.LoginResponseEntity>>.value(_FakeResult_0<_i5.LoginResponseEntity>(
           this,
           Invocation.method(
             #login,
@@ -78,32 +71,29 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
             {#params: params},
           ),
         )),
-      ) as _i4.Future<_i2.Result<_i5.UserEntity>>);
+      ) as _i4.Future<_i2.Result<_i5.LoginResponseEntity>>);
 
   @override
-  _i2.RemoteResult<Entity>
-      call<Model extends _i7.BaseModel<Entity>, Entity extends _i8.BaseEntity>(
-              {required _i9.Either<_i10.BaseError, Model>? result}) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #call,
-              [],
-              {#result: result},
-            ),
-            returnValue: _FakeRemoteResult_1<Entity>(
-              this,
-              Invocation.method(
-                #call,
-                [],
-                {#result: result},
-              ),
-            ),
-          ) as _i2.RemoteResult<Entity>);
+  _i2.RemoteResult<Entity> call<Model extends _i7.BaseModel<Entity>, Entity extends _i8.BaseEntity>(
+          {required _i9.Either<_i10.BaseError, Model>? result}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#result: result},
+        ),
+        returnValue: _FakeRemoteResult_1<Entity>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {#result: result},
+          ),
+        ),
+      ) as _i2.RemoteResult<Entity>);
 
   @override
-  _i2.RemoteResult<List<Entity>> callForList<
-              Model extends _i7.BaseModel<Entity>,
-              Entity extends _i8.BaseEntity>(
+  _i2.RemoteResult<List<Entity>> callForList<Model extends _i7.BaseModel<Entity>, Entity extends _i8.BaseEntity>(
           {required _i9.Either<_i10.BaseError, List<Model>>? result}) =>
       (super.noSuchMethod(
         Invocation.method(

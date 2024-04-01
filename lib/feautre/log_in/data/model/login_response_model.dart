@@ -1,7 +1,7 @@
 import 'package:da_assessment/core/models/base_model.dart';
-import 'package:da_assessment/feautre/log_in/domain/entity/user_entity.dart';
+import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 
-class UserModel extends BaseModel<UserEntity> {
+class LoginResponseModel extends BaseModel<LoginResponseEntity> {
   final String id;
   final String email;
   final String name;
@@ -9,7 +9,7 @@ class UserModel extends BaseModel<UserEntity> {
   final String verificationStatus;
   final List activeTopUp;
 
-  UserModel(
+  LoginResponseModel(
       {required this.id,
       required this.email,
       required this.name,
@@ -17,8 +17,8 @@ class UserModel extends BaseModel<UserEntity> {
       required this.verificationStatus,
       required this.activeTopUp});
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
+    return LoginResponseModel(
       id: json['id'],
       email: json['email'],
       name: json['name'],
@@ -40,7 +40,7 @@ class UserModel extends BaseModel<UserEntity> {
   }
 
   @override
-  UserEntity toEntity() {
-    return UserEntity(id, email, name, balance, verificationStatus, activeTopUp);
+  LoginResponseEntity toEntity() {
+    return LoginResponseEntity(id, email, name, balance, verificationStatus, activeTopUp);
   }
 }

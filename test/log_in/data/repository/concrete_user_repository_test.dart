@@ -1,8 +1,8 @@
 import 'package:da_assessment/core/errors/custom_error.dart';
 import 'package:da_assessment/feautre/log_in/data/data_source/login_remote_datasource.dart';
-import 'package:da_assessment/feautre/log_in/data/model/user_model.dart';
+import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
 import 'package:da_assessment/feautre/log_in/data/repository/concrete_user_repository.dart';
-import 'package:da_assessment/feautre/log_in/domain/entity/user_entity.dart';
+import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,9 +23,9 @@ void main() {
 
   const tEmail = 'test@example.com';
   const tPassword = 'password123';
-  final tUser = UserEntity('1', "tEmail", "tName", 1000, "1", []);
-  final tUserModel =
-      UserModel(id: '1', email: "tEmail", name: "tName", balance: 1000, activeTopUp: [], verificationStatus: '1');
+  final tUser = LoginResponseEntity('1', "tEmail", "tName", 1000, "1", []);
+  final tUserModel = LoginResponseModel(
+      id: '1', email: "tEmail", name: "tName", balance: 1000, activeTopUp: [], verificationStatus: '1');
   final tParams = LogInParams(email: tEmail, password: tPassword);
   final error = CustomError(message: 'Failed to login');
 

@@ -1,7 +1,7 @@
 import 'package:da_assessment/core/errors/base_error.dart';
 import 'package:da_assessment/core/errors/custom_error.dart';
 import 'package:da_assessment/feautre/log_in/data/data_source/concrete_user_datasource.dart';
-import 'package:da_assessment/feautre/log_in/data/model/user_model.dart';
+import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,8 +20,8 @@ void main() {
 
   final tEmail = 'test@example.com';
   final tPassword = 'password123';
-  final tUserModel =
-      UserModel(id: '1', email: "tEmail", name: "tName", balance: 1000, activeTopUp: [], verificationStatus: '1');
+  final tUserModel = LoginResponseModel(
+      id: '1', email: "tEmail", name: "tName", balance: 1000, activeTopUp: [], verificationStatus: '1');
   final tParams = LogInParams(email: tEmail, password: tPassword);
   final error = CustomError(message: 'Failed to login');
 
@@ -34,7 +34,7 @@ void main() {
       final result = await dataSource.login(tParams);
 
       // Assert
-      expect(result, isA<Right<BaseError, UserModel>>());
+      expect(result, isA<Right<BaseError, LoginResponseModel>>());
       verify(dataSource.login(tParams));
       verifyNoMoreInteractions(dataSource);
     });
@@ -47,7 +47,7 @@ void main() {
       final result = await dataSource.login(tParams);
 
       // Assert
-      expect(result, isA<Left<BaseError, UserModel>>());
+      expect(result, isA<Left<BaseError, LoginResponseModel>>());
       expect(result.isLeft(), true);
       verify(dataSource.login(tParams));
       verifyNoMoreInteractions(dataSource);

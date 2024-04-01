@@ -1,7 +1,7 @@
 import '../../../../core/params/base_params.dart';
 import '../../../../core/results/result.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entity/user_entity.dart';
+import '../entity/login_response_entity.dart';
 import '../repository/user_repository.dart';
 
 class LogInParams extends BaseParams {
@@ -18,13 +18,13 @@ class LogInParams extends BaseParams {
   }
 }
 
-class LogInUseCase extends UseCase<UserEntity, LogInParams> {
+class LogInUseCase extends UseCase<LoginResponseEntity, LogInParams> {
   final UserRepository repository;
 
   LogInUseCase(this.repository);
 
   @override
-  Future<Result<UserEntity>> call({required LogInParams params}) {
+  Future<Result<LoginResponseEntity>> call({required LogInParams params}) {
     return repository.login(params: params);
   }
 }

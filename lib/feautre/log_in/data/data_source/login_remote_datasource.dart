@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/data_source/remote_data_source.dart';
 import '../../../../core/errors/base_error.dart';
-import '../model/user_model.dart';
+import '../model/login_response_model.dart';
 
 abstract class UserRemoteDataSource extends RemoteDataSource {
-  Future<Either<BaseError, UserModel>> login(LogInParams params);
+  Future<Either<BaseError, LoginResponseModel>> login(LogInParams params);
 }

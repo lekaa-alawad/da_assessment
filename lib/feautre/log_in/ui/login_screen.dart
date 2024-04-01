@@ -1,7 +1,7 @@
 import 'package:da_assessment/core/utils/form_utils/text_field_ext.dart';
 import 'package:da_assessment/core/utils/validators/email_validator.dart';
 import 'package:da_assessment/feautre/log_in/data/repository/concrete_user_repository.dart';
-import 'package:da_assessment/feautre/log_in/domain/entity/user_entity.dart';
+import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +9,10 @@ import '../../../core/boilerplate/create_model/widgets/create_model.dart';
 import '../../../core/ui/custom_appBar.dart';
 import '../../../core/ui/custom_text_field.dart';
 import '../../../core/utils/form_utils/form_state_mixin.dart';
+import '../../../core/utils/navigation.dart';
 import '../../../core/utils/validators/base_validator.dart';
 import '../../../core/utils/validators/required_validator.dart';
+import '../../home_page/ui/home_page_screen.dart';
 import '../data/data_source/concrete_user_datasource.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -74,8 +76,8 @@ class _LoginScreenState extends State<LoginScreen> with FormStateMinxin {
                   onTap: () {
                     return form.validate();
                   },
-                  onSuccess: (UserEntity model) {
-                    //Navigation.push( const HomeScreen());
+                  onSuccess: (LoginResponseEntity model) {
+                    Navigation.pushReplacement(const HomePageScreen());
                   },
                   useCaseCallBack: (model) =>
                       LogInUseCase(ConcreteUserRepository(remoteDataSource: ConcreteUserRemoteDataSource())).call(
