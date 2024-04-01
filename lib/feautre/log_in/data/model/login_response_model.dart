@@ -5,26 +5,22 @@ class LoginResponseModel extends BaseModel<LoginResponseEntity> {
   final String id;
   final String email;
   final String name;
-  final int balance;
-  final String verificationStatus;
-  final List activeTopUp;
 
-  LoginResponseModel(
-      {required this.id,
-      required this.email,
-      required this.name,
-      required this.balance,
-      required this.verificationStatus,
-      required this.activeTopUp});
+  final String token;
+
+  LoginResponseModel({
+    required this.id,
+    required this.email,
+    required this.name,
+    required this.token,
+  });
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
     return LoginResponseModel(
       id: json['id'],
       email: json['email'],
       name: json['name'],
-      balance: json['balance'],
-      verificationStatus: json['verificationStatus'],
-      activeTopUp: json['activeTopUp'],
+      token: json['verificationStatus'],
     );
   }
 
@@ -33,14 +29,12 @@ class LoginResponseModel extends BaseModel<LoginResponseEntity> {
       'id': id,
       'email': email,
       'name': name,
-      'balance': balance,
-      'verificationStatus': verificationStatus,
-      'activeTopUp': activeTopUp,
+      'verificationStatus': token,
     };
   }
 
   @override
   LoginResponseEntity toEntity() {
-    return LoginResponseEntity(id, email, name, balance, verificationStatus, activeTopUp);
+    return LoginResponseEntity(id, email, name, token);
   }
 }

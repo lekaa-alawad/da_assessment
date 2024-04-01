@@ -4,12 +4,11 @@ class LoginResponseEntity extends BaseEntity {
   final String id;
   final String email;
   final String name;
-  final int balance;
-  final String verificationStatus;
-  final List activeTopUp;
 
-  LoginResponseEntity(this.id, this.email, this.name, this.balance, this.verificationStatus, this.activeTopUp);
+  final String token;
+
+  LoginResponseEntity(this.id, this.email, this.name, this.token);
 
   @override
-  List<Object?> get props => [email, name, balance, verificationStatus, activeTopUp];
+  List<Object?> get props => [email, name, token];
 }

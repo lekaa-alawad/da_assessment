@@ -21,7 +21,7 @@ void main() {
 
   const tEmail = 'test@example.com';
   const tPassword = 'password123';
-  final tUser = LoginResponseEntity('1', "tEmail", "tName", 1000, "1", []);
+  final tUser = LoginResponseEntity('1', "tEmail", "tName", 'token');
   final tParams = LogInParams(email: tEmail, password: tPassword);
   final error = CustomError(message: 'Failed to login');
 

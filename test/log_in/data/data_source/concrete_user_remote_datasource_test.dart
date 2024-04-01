@@ -20,8 +20,7 @@ void main() {
 
   final tEmail = 'test@example.com';
   final tPassword = 'password123';
-  final tUserModel = LoginResponseModel(
-      id: '1', email: "tEmail", name: "tName", balance: 1000, activeTopUp: [], verificationStatus: '1');
+  final tUserModel = LoginResponseModel(id: '1', email: "tEmail", name: "tName", token: '1');
   final tParams = LogInParams(email: tEmail, password: tPassword);
   final error = CustomError(message: 'Failed to login');
 

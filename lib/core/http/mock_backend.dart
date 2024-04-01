@@ -4,13 +4,11 @@ import 'package:dartz/dartz.dart';
 
 class BackEndService {
   static LoginResponseModel userModel = LoginResponseModel(
-      id: '1',
-      email: 'lekaa.alawad@gmail.com'
-          '',
-      name: 'leka',
-      balance: 1000,
-      verificationStatus: '1',
-      activeTopUp: []);
+    id: '1',
+    email: 'lekaa.alawad@gmail.com',
+    name: 'leka',
+    token: 'token',
+  );
 
   static Future<Either<BaseError, Data>> login<Data>() async {
     return Right(userModel as Data);
