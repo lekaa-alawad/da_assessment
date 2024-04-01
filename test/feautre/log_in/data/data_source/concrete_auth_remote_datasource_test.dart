@@ -1,6 +1,6 @@
 import 'package:da_assessment/core/errors/base_error.dart';
 import 'package:da_assessment/core/errors/custom_error.dart';
-import 'package:da_assessment/feautre/log_in/data/data_source/concrete_user_datasource.dart';
+import 'package:da_assessment/feautre/log_in/data/data_source/concrete_auth_datasource.dart';
 import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -8,14 +8,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'concrete_user_remote_datasource_test.mocks.dart';
+import 'concrete_auth_remote_datasource_test.mocks.dart';
 
-@GenerateMocks([ConcreteUserRemoteDataSource])
+@GenerateMocks([ConcreteAuthRemoteDataSource])
 void main() {
-  late ConcreteUserRemoteDataSource dataSource;
+  late ConcreteAuthRemoteDataSource dataSource;
 
   setUp(() {
-    dataSource = MockConcreteUserRemoteDataSource();
+    dataSource = MockConcreteAuthRemoteDataSource();
   });
 
   final tEmail = 'test@example.com';

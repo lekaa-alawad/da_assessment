@@ -5,6 +5,6 @@ import '../../../../core/data_source/remote_data_source.dart';
 import '../../../../core/errors/base_error.dart';
 import '../model/login_response_model.dart';
 
-abstract class UserRemoteDataSource extends RemoteDataSource {
+abstract class AuthRemoteDataSource extends RemoteDataSource {
   Future<Either<BaseError, LoginResponseModel>> login(LogInParams params);
 }

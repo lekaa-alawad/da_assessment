@@ -46,6 +46,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   chewie: ^1.7.5
   video_player: ^2.8.3
+  get_it: ^7.6.7
 
 dev_dependencies:
   flutter_test:

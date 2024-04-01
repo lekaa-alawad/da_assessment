@@ -1,7 +1,7 @@
 import 'package:da_assessment/core/errors/custom_error.dart';
 import 'package:da_assessment/core/results/result.dart';
 import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
-import 'package:da_assessment/feautre/log_in/domain/repository/user_repository.dart';
+import 'package:da_assessment/feautre/log_in/domain/repository/auth_repository.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -9,13 +9,13 @@ import 'package:mockito/mockito.dart';
 
 import 'login-usecase_test.mocks.dart';
 
-@GenerateMocks([UserRepository])
+@GenerateMocks([AuthRepository])
 void main() {
   late LogInUseCase useCase;
-  late MockUserRepository mockRepository;
+  late MockAuthRepository mockRepository;
 
   setUp(() {
-    mockRepository = MockUserRepository();
+    mockRepository = MockAuthRepository();
     useCase = LogInUseCase(mockRepository);
   });
 

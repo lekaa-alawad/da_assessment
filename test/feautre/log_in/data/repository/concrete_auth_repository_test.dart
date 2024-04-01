@@ -1,7 +1,7 @@
 import 'package:da_assessment/core/errors/custom_error.dart';
-import 'package:da_assessment/feautre/log_in/data/data_source/login_remote_datasource.dart';
+import 'package:da_assessment/feautre/log_in/data/data_source/auth_remote_datasource.dart';
 import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
-import 'package:da_assessment/feautre/log_in/data/repository/concrete_user_repository.dart';
+import 'package:da_assessment/feautre/log_in/data/repository/concrete_auth_repository.dart';
 import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -9,16 +9,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'concrete_user_repository_test.mocks.dart';
+import 'concrete_auth_repository_test.mocks.dart';
 
-@GenerateMocks([UserRemoteDataSource])
+@GenerateMocks([AuthRemoteDataSource])
 void main() {
-  late ConcreteUserRepository repository;
-  late MockUserRemoteDataSource mockRemoteDataSource;
+  late ConcreteAuthRepository repository;
+  late MockAuthRemoteDataSource mockRemoteDataSource;
 
   setUp(() {
-    mockRemoteDataSource = MockUserRemoteDataSource();
-    repository = ConcreteUserRepository(remoteDataSource: mockRemoteDataSource);
+    mockRemoteDataSource = MockAuthRemoteDataSource();
+    repository = ConcreteAuthRepository(remoteDataSource: mockRemoteDataSource);
   });
 
   const tEmail = 'test@example.com';

@@ -4,6 +4,6 @@ import '../../../../core/repositories/core_repository.dart';
 import '../../../../core/results/result.dart';
 import '../entity/login_response_entity.dart';
 
-abstract class UserRepository extends CoreRepository {
+abstract class AuthRepository extends CoreRepository {
   Future<Result<LoginResponseEntity>> login({required LogInParams params});
 }

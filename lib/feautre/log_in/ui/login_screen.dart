@@ -1,6 +1,6 @@
 import 'package:da_assessment/core/utils/form_utils/text_field_ext.dart';
 import 'package:da_assessment/core/utils/validators/email_validator.dart';
-import 'package:da_assessment/feautre/log_in/data/repository/concrete_user_repository.dart';
+import 'package:da_assessment/feautre/log_in/data/repository/concrete_auth_repository.dart';
 import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +12,8 @@ import '../../../core/utils/form_utils/form_state_mixin.dart';
 import '../../../core/utils/navigation.dart';
 import '../../../core/utils/validators/base_validator.dart';
 import '../../../core/utils/validators/required_validator.dart';
+import '../../../main.dart';
 import '../../home_page/ui/home_page_screen.dart';
-import '../data/data_source/concrete_user_datasource.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -79,9 +79,8 @@ class _LoginScreenState extends State<LoginScreen> with FormStateMinxin {
                   onSuccess: (LoginResponseEntity model) {
                     Navigation.pushReplacement(const HomePageScreen());
                   },
-                  useCaseCallBack: (model) =>
-                      LogInUseCase(ConcreteUserRepository(remoteDataSource: ConcreteUserRemoteDataSource())).call(
-                          params: LogInParams(email: form.controllers[0].text, password: form.controllers[1].text)),
+                  useCaseCallBack: (model) => LogInUseCase(getIt.get<ConcreteAuthRepository>())
+                      .call(params: LogInParams(email: form.controllers[0].text, password: form.controllers[1].text)),
                   withValidation: true,
                   child: const Text('Submit'),
                 ),
