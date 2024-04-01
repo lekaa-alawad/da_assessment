@@ -1,11 +1,11 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/base_model.dart';
+import '../../../entites/base_entity.dart';
+import '../../../results/result.dart';
 
 part 'create_model_state.dart';
 
-typedef UsecaseCallBack = Future<Either<Exception, BaseModel>>? Function(dynamic data);
+typedef UsecaseCallBack = Future<Result<BaseEntity>>? Function(dynamic data);
 
 class CreateModelCubit<Model> extends Cubit<CreateModelState> {
   final UsecaseCallBack getData;
@@ -15,12 +15,12 @@ class CreateModelCubit<Model> extends Cubit<CreateModelState> {
   createModel({dynamic requestData}) async {
     emit(Loading());
     try {
-      Either<Exception, BaseModel>? response = await getData(requestData);
+      Result<BaseEntity>? response = await getData(requestData);
       if (response != null) {
-        if (response.isRight()) {
-          emit(CreateModelSuccessfully(model: (response as Right<Exception, BaseModel>).value));
-        } else if (response.isLeft()) {
-          emit(Error(message: (response as Left<Exception, BaseModel>).value.toString()));
+        if (response.hasDataOnly) {
+          emit(CreateModelSuccessfully(model: (response).data));
+        } else if (response.hasErrorOnly) {
+          emit(Error(message: (response).error.toString()));
         } else {
           emit(Error(message: 'some thing went wrong'));
         }
