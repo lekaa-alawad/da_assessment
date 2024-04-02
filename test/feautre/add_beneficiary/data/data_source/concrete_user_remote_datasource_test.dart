@@ -22,7 +22,7 @@ void main() {
   const tBeneficiaryNumber = '1234567890';
   final tParams = AddBeneficiaryParams(beneficiaryName: tBeneficiaryName, beneficiaryNumber: tBeneficiaryNumber);
   final tBeneficiaryModel =
-      TopUpBeneficiaryModel(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0);
+      TopUpBeneficiaryModel(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0, id: 1);
   final tError = CustomError(message: 'Failed to add beneficiary');
   final tMaxNumberError = CustomError(message: 'Max number of beneficiary reached');
   group('ConcreteBeneficiaryRemoteDataSource', () {

@@ -22,7 +22,7 @@ void main() {
   const tBeneficiaryName = 'John Doe';
   const tBeneficiaryNumber = '1234567890';
   final tBeneficiary =
-      TopUpBeneficiaryEntity(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0);
+      TopUpBeneficiaryEntity(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0, id: 1);
   final tParams = AddBeneficiaryParams(beneficiaryName: tBeneficiaryName, beneficiaryNumber: tBeneficiaryNumber);
   final maxNumberError = CustomError(message: 'Max number of beneficiary reached');
   final customError = CustomError(message: 'Something went wrong');

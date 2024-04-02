@@ -25,10 +25,10 @@ void main() {
   const tBeneficiaryName = 'John Doe';
   const tBeneficiaryNumber = '1234567890';
   final tBeneficiaryModel =
-      TopUpBeneficiaryModel(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0);
+      TopUpBeneficiaryModel(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0, id: 1);
 
   final tBeneficiary =
-      TopUpBeneficiaryEntity(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0);
+      TopUpBeneficiaryEntity(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0, id: 1);
   final tParams = AddBeneficiaryParams(beneficiaryName: tBeneficiaryName, beneficiaryNumber: tBeneficiaryNumber);
   final error = CustomError(message: 'Failed to add beneficiary');
   final maxNumberError = CustomError(message: 'Max number of beneficiary reached');

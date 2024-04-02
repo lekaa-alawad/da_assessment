@@ -5,11 +5,13 @@ class TopUpBeneficiaryModel extends BaseModel<TopUpBeneficiaryEntity> {
   final String nickname;
   final String phoneNumber;
   final double monthlyTopUpAmount;
+  final int id;
 
   TopUpBeneficiaryModel({
     required this.nickname,
     required this.phoneNumber,
     this.monthlyTopUpAmount = 0.0,
+    required this.id,
   });
 
   factory TopUpBeneficiaryModel.fromJson(Map<String, dynamic> json) {
@@ -17,11 +19,13 @@ class TopUpBeneficiaryModel extends BaseModel<TopUpBeneficiaryEntity> {
       nickname: json['nickname'],
       phoneNumber: json['phoneNumber'],
       monthlyTopUpAmount: json['monthlyTopUpAmount'] ?? 0.0,
+      id: json['id'],
     );
   }
 
   @override
   TopUpBeneficiaryEntity toEntity() {
-    return TopUpBeneficiaryEntity(nickname: nickname, phoneNumber: phoneNumber, monthlyTopUpAmount: monthlyTopUpAmount);
+    return TopUpBeneficiaryEntity(
+        id: id, nickname: nickname, phoneNumber: phoneNumber, monthlyTopUpAmount: monthlyTopUpAmount);
   }
 }
