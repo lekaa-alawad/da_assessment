@@ -42,78 +42,18 @@ class HomePageScreen extends StatelessWidget {
                           const SizedBox(height: 16.0),
                           _buildBalance(context.read<HomePageCubit>().userEntity, context),
                           const SizedBox(height: 24.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Top-Up Beneficiaries',
-                                style: Theme.of(context).textTheme.displayMedium,
-                              ),
-                              InkWell(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Add Beneficiary',
-                                    style: Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ),
-                                onTap: () {
-                                  if (context.read<HomePageCubit>().userEntity.topUpBeneficiaries.length < 5) {
-                                    Navigation.push(const AddBeneficiary())?.then((value) =>
-                                        context.read<HomePageCubit>().addBeneficiary(value as TopUpBeneficiaryEntity));
-                                  } else {
-                                    Dialogs.showErrorSnackBar(message: 'Can\'t add more than 5 Beneficiaries');
-                                  }
-                                },
-                              )
-                            ],
-                          ),
+                          buildBeneficiariesHeader(context),
                           const SizedBox(height: 8.0),
-                          Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: TabBar(
-                                tabs: const [
-                                  Tab(text: 'Recharge'),
-                                  Tab(text: 'History'),
-                                ],
-                                unselectedLabelColor: Colors.black,
-                                indicatorSize: TabBarIndicatorSize.tab,
-                                dividerColor: Colors.grey.shade300,
-                                labelColor: Colors.blue,
-                                indicator: const ShapeDecoration(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(24))),
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(maxHeight: 145),
-                            child: TabBarView(
-                              children: [
-                                MobileRechargeTab(
-                                  topUpBeneficiaries: context.read<HomePageCubit>().userEntity.topUpBeneficiaries,
-                                ),
-                                MobileRechargeTab(
-                                  topUpBeneficiaries:
-                                      context.read<HomePageCubit>().userEntity.historyTopUpBeneficiaries ?? [],
-                                )
-                              ],
-                            ),
-                          ),
+                          buildTabBar(),
+                          buildTabBarView(context),
                           // _buildTopUpBeneficiaries(user),
                           const SizedBox(height: 16.0),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Handle "Add Beneficiary" button press
-                            },
-                            child: const Text('Browse Beneficiaries'),
-                          ),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     // Handle "Add Beneficiary" button press
+                          //   },
+                          //   child: const Text('Browse Beneficiaries'),
+                          // ),
                         ],
                       ),
                     ),
@@ -123,6 +63,76 @@ class HomePageScreen extends StatelessWidget {
             );
           },
         ));
+  }
+
+  ConstrainedBox buildTabBarView(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 145),
+      child: TabBarView(
+        children: [
+          MobileRechargeTab(
+            topUpBeneficiaries: context.read<HomePageCubit>().userEntity.topUpBeneficiaries,
+          ),
+          MobileRechargeTab(
+            topUpBeneficiaries: context.read<HomePageCubit>().userEntity.historyTopUpBeneficiaries ?? [],
+          )
+        ],
+      ),
+    );
+  }
+
+  Container buildTabBar() {
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: TabBar(
+          tabs: const [
+            Tab(text: 'Recharge'),
+            Tab(text: 'History'),
+          ],
+          unselectedLabelColor: Colors.black,
+          indicatorSize: TabBarIndicatorSize.tab,
+          dividerColor: Colors.grey.shade300,
+          labelColor: Colors.blue,
+          indicator: const ShapeDecoration(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(24))), color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Row buildBeneficiariesHeader(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Top-Up Beneficiaries',
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+        InkWell(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Add Beneficiary',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+          onTap: () {
+            if (context.read<HomePageCubit>().userEntity.topUpBeneficiaries.length < 5) {
+              Navigation.push(const AddBeneficiary())
+                  ?.then((value) => context.read<HomePageCubit>().addBeneficiary(value as TopUpBeneficiaryEntity));
+            } else {
+              Dialogs.showErrorSnackBar(message: 'Can\'t add more than 5 Beneficiaries');
+            }
+          },
+        )
+      ],
+    );
   }
 
   Widget _buildUserInfo(UserEntity user, BuildContext context) {
