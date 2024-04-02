@@ -18,8 +18,8 @@ void main() {
     dataSource = MockConcreteAuthRemoteDataSource();
   });
 
-  final tEmail = 'test@example.com';
-  final tPassword = 'password123';
+  const tEmail = 'test@example.com';
+  const tPassword = 'password123';
   final tUserModel = LoginResponseModel(id: '1', email: "tEmail", name: "tName", token: '1');
   final tParams = LogInParams(email: tEmail, password: tPassword);
   final error = CustomError(message: 'Failed to login');

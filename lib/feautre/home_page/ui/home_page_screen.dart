@@ -1,5 +1,5 @@
 import 'package:da_assessment/core/boilerplate/get_model/widgets/get_model.dart';
-import 'package:da_assessment/core/ui/custom_appBar.dart';
+import 'package:da_assessment/core/ui/custom_appbar.dart';
 import 'package:da_assessment/core/ui/dialogs/dialogs.dart';
 import 'package:da_assessment/core/utils/navigation.dart';
 import 'package:da_assessment/feautre/home_page/cubits/home_page_cubit.dart';

@@ -22,9 +22,9 @@ class CreateModelCubit<Model> extends Cubit<CreateModelState> {
           emit(CreateModelSuccessfully(model: (response).data));
         } else if (response.hasErrorOnly) {
           if (response.error is CustomError) {
-            emit(Error(message: (response.error as CustomError).message.toString() ?? ''));
+            emit(Error(message: (response.error as CustomError).message.toString()));
           } else {
-            emit(Error(message: (response.error).toString() ?? ''));
+            emit(Error(message: (response.error).toString()));
           }
         } else {
           emit(Error(message: 'some thing went wrong'));

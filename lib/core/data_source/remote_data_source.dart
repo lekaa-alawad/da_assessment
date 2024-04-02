@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../errors/base_error.dart';
 import '../http/api_provider.dart';
 import '../http/http_method.dart';
-import '../responses/ApiResponse.dart';
+import '../responses/api_response.dart';
 
 abstract class RemoteDataSource {
   Future<Either<BaseError, Data>> request<Data, Response extends ApiResponse<Data>>({
@@ -113,15 +113,13 @@ abstract class RemoteDataSource {
       data: data,
       converter: converter,
     );
-    print('is right : ${response.isRight()}');
-    print(response.isLeft());
+    if (kDebugMode) {
+      print('is right : ${response.isRight()}');
+      print(response.isLeft());
+    }
     if (response.isLeft()) {
-      print('is left');
       return Left((response as Left<BaseError, Data>).value);
     } else {
-      print('in else');
-
-      final resValue = (response as Right<BaseError, Data>).value;
       return Right((response as Right<BaseError, Data>).value);
     }
   }

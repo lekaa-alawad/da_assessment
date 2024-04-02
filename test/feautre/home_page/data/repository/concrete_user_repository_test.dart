@@ -22,7 +22,7 @@ void main() {
   });
 
   final tUser = UserEntity(
-      id: "1", email: 'test@example.com', isVerified: true, name: 'test', balance: 1000, topUpBeneficiaries: []);
+      id: "1", email: 'test@example.com', isVerified: true, name: 'test', balance: 1000, topUpBeneficiaries: const []);
 
   final tUserModel = UserModel(
       id: "1", email: 'test@example.com', isVerified: true, name: 'test', balance: 1000, topUpBeneficiaries: []);

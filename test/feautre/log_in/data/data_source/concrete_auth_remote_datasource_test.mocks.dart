@@ -7,13 +7,10 @@ import 'dart:async' as _i4;
 
 import 'package:da_assessment/core/errors/base_error.dart' as _i5;
 import 'package:da_assessment/core/http/http_method.dart' as _i9;
-import 'package:da_assessment/core/responses/ApiResponse.dart' as _i8;
-import 'package:da_assessment/feautre/log_in/data/data_source/concrete_auth_datasource.dart'
-    as _i3;
-import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart'
-    as _i6;
-import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart'
-    as _i7;
+import 'package:da_assessment/core/responses/api_response.dart' as _i8;
+import 'package:da_assessment/feautre/log_in/data/data_source/concrete_auth_datasource.dart' as _i3;
+import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart' as _i6;
+import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -43,23 +40,19 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 /// A class which mocks [ConcreteAuthRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConcreteAuthRemoteDataSource extends _i1.Mock
-    implements _i3.ConcreteAuthRemoteDataSource {
+class MockConcreteAuthRemoteDataSource extends _i1.Mock implements _i3.ConcreteAuthRemoteDataSource {
   MockConcreteAuthRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.BaseError, _i6.LoginResponseModel>> login(
-          _i7.LogInParams? params) =>
-      (super.noSuchMethod(
+  _i4.Future<_i2.Either<_i5.BaseError, _i6.LoginResponseModel>> login(_i7.LogInParams? params) => (super.noSuchMethod(
         Invocation.method(
           #login,
           [params],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.BaseError, _i6.LoginResponseModel>>.value(
-                _FakeEither_0<_i5.BaseError, _i6.LoginResponseModel>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, _i6.LoginResponseModel>>.value(
+            _FakeEither_0<_i5.BaseError, _i6.LoginResponseModel>(
           this,
           Invocation.method(
             #login,
@@ -69,8 +62,7 @@ class MockConcreteAuthRemoteDataSource extends _i1.Mock
       ) as _i4.Future<_i2.Either<_i5.BaseError, _i6.LoginResponseModel>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.BaseError, Data>>
-      request<Data, Response extends _i8.ApiResponse<Data>>({
+  _i4.Future<_i2.Either<_i5.BaseError, Data>> request<Data, Response extends _i8.ApiResponse<Data>>({
     required Response Function(Map<String, dynamic>)? converter,
     required _i9.HttpTypeMethod? method,
     required String? url,
@@ -78,36 +70,35 @@ class MockConcreteAuthRemoteDataSource extends _i1.Mock
     Map<String, dynamic>? data,
     bool? withAuthentication = false,
   }) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #request,
-              [],
-              {
-                #converter: converter,
-                #method: method,
-                #url: url,
-                #queryParameters: queryParameters,
-                #data: data,
-                #withAuthentication: withAuthentication,
-              },
-            ),
-            returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(
-                _FakeEither_0<_i5.BaseError, Data>(
-              this,
-              Invocation.method(
-                #request,
-                [],
-                {
-                  #converter: converter,
-                  #method: method,
-                  #url: url,
-                  #queryParameters: queryParameters,
-                  #data: data,
-                  #withAuthentication: withAuthentication,
-                },
-              ),
-            )),
-          ) as _i4.Future<_i2.Either<_i5.BaseError, Data>>);
+      (super.noSuchMethod(
+        Invocation.method(
+          #request,
+          [],
+          {
+            #converter: converter,
+            #method: method,
+            #url: url,
+            #queryParameters: queryParameters,
+            #data: data,
+            #withAuthentication: withAuthentication,
+          },
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(_FakeEither_0<_i5.BaseError, Data>(
+          this,
+          Invocation.method(
+            #request,
+            [],
+            {
+              #converter: converter,
+              #method: method,
+              #url: url,
+              #queryParameters: queryParameters,
+              #data: data,
+              #withAuthentication: withAuthentication,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.BaseError, Data>>);
 
   @override
   _i4.Future<_i2.Either<_i5.BaseError, List<Data>>> requestList<Data>({
@@ -131,8 +122,7 @@ class MockConcreteAuthRemoteDataSource extends _i1.Mock
             #withAuthentication: withAuthentication,
           },
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.BaseError, List<Data>>>.value(
-            _FakeEither_0<_i5.BaseError, List<Data>>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, List<Data>>>.value(_FakeEither_0<_i5.BaseError, List<Data>>(
           this,
           Invocation.method(
             #requestList,
@@ -171,8 +161,7 @@ class MockConcreteAuthRemoteDataSource extends _i1.Mock
             #withAuthentication: withAuthentication,
           },
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(
-            _FakeEither_0<_i5.BaseError, Data>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(_FakeEither_0<_i5.BaseError, Data>(
           this,
           Invocation.method(
             #nonStructuredRequest,

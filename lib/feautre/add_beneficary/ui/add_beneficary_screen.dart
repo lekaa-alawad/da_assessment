@@ -1,5 +1,5 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:da_assessment/core/ui/custom_appBar.dart';
+import 'package:da_assessment/core/ui/custom_appbar.dart';
 import 'package:da_assessment/core/ui/theme/decorations.dart';
 import 'package:da_assessment/core/utils/form_utils/form_state_mixin.dart';
 import 'package:da_assessment/core/utils/form_utils/form_utils.dart';
@@ -86,7 +86,6 @@ class _AddBeneficiaryState extends State<AddBeneficiary> with FormStateMinxin {
                   typeSnackBar: AnimatedSnackBarType.success,
                 );
                 Navigation.pop(value: model);
-                print(model);
               },
               useCaseCallBack: (model) => AddBeneficiaryUseCase(getIt.get<ConcreteBeneficiaryRepository>()).call(
                 params: AddBeneficiaryParams(

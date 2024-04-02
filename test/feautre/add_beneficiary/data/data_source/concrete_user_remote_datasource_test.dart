@@ -18,8 +18,8 @@ void main() {
     dataSource = MockConcreteBeneficiaryRemoteDataSource();
   });
 
-  final tBeneficiaryName = 'John Doe';
-  final tBeneficiaryNumber = '1234567890';
+  const tBeneficiaryName = 'John Doe';
+  const tBeneficiaryNumber = '1234567890';
   final tParams = AddBeneficiaryParams(beneficiaryName: tBeneficiaryName, beneficiaryNumber: tBeneficiaryNumber);
   final tBeneficiaryModel =
       TopUpBeneficiaryModel(nickname: tBeneficiaryName, phoneNumber: tBeneficiaryNumber, monthlyTopUpAmount: 0);
