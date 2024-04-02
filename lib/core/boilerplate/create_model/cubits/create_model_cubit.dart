@@ -1,3 +1,4 @@
+import 'package:da_assessment/core/errors/custom_error.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../entites/base_entity.dart';
@@ -20,7 +21,11 @@ class CreateModelCubit<Model> extends Cubit<CreateModelState> {
         if (response.hasDataOnly) {
           emit(CreateModelSuccessfully(model: (response).data));
         } else if (response.hasErrorOnly) {
-          emit(Error(message: (response).error.toString()));
+          if (response.error is CustomError) {
+            emit(Error(message: (response.error as CustomError).message.toString() ?? ''));
+          } else {
+            emit(Error(message: (response.error).toString() ?? ''));
+          }
         } else {
           emit(Error(message: 'some thing went wrong'));
         }

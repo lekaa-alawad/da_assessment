@@ -1,5 +1,7 @@
 import 'package:da_assessment/core/errors/base_error.dart';
-import 'package:da_assessment/feautre/home_page/data/model/topup_beneficiary_model.dart';
+import 'package:da_assessment/core/errors/custom_error.dart';
+import 'package:da_assessment/feautre/add_beneficary/data/model/topup_beneficiary_model.dart';
+import 'package:da_assessment/feautre/add_beneficary/domain/usecase/add_beneficiary_usecase.dart';
 import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -35,5 +37,16 @@ class BackEndService {
 
   Future<Either<BaseError, Data>> getUser<Data>() async {
     return Right(userModel as Data);
+  }
+
+  Future<Either<BaseError, Data>> addBeneficiary<Data>(AddBeneficiaryParams params) async {
+    if (userModel.topUpBeneficiaries.length < 5) {
+      TopUpBeneficiaryModel beneficiary = TopUpBeneficiaryModel(
+          nickname: params.beneficiaryName, phoneNumber: params.beneficiaryNumber, monthlyTopUpAmount: 0);
+      userModel.topUpBeneficiaries.add(beneficiary);
+      return Right(beneficiary as Data);
+    } else {
+      return Left(CustomError(message: 'Max number of beneficiary reached'));
+    }
   }
 }

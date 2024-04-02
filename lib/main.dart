@@ -1,5 +1,9 @@
-import 'package:da_assessment/feautre/log_in/ui/login_screen.dart';
+import 'package:da_assessment/feautre/add_beneficary/data/data_source/concrete_beneficiary_datasource.dart';
+import 'package:da_assessment/feautre/add_beneficary/data/repository/beneficiary_reopsitory.dart';
+import 'package:da_assessment/feautre/home_page/cubits/home_page_cubit.dart';
+import 'package:da_assessment/feautre/home_page/ui/home_page_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
@@ -20,10 +24,24 @@ void diSetup() {
   //data sources
   getIt.registerLazySingleton(() => ConcreteUserRemoteDataSource());
   getIt.registerLazySingleton(() => ConcreteAuthRemoteDataSource());
+  getIt.registerLazySingleton(() => ConcreteBeneficiaryRemoteDataSource());
 
   //repositories
-  getIt.registerLazySingleton(() => ConcreteUserRepository(remoteDataSource: ConcreteUserRemoteDataSource()));
-  getIt.registerLazySingleton(() => ConcreteAuthRepository(remoteDataSource: ConcreteAuthRemoteDataSource()));
+  getIt.registerLazySingleton(
+    () => ConcreteUserRepository(
+      remoteDataSource: getIt.get<ConcreteUserRemoteDataSource>(),
+    ),
+  );
+  getIt.registerLazySingleton(
+    () => ConcreteAuthRepository(
+      remoteDataSource: getIt.get<ConcreteAuthRemoteDataSource>(),
+    ),
+  );
+  getIt.registerLazySingleton(
+    () => ConcreteBeneficiaryRepository(
+      dataSource: getIt.get<ConcreteBeneficiaryRemoteDataSource>(),
+    ),
+  );
 }
 
 void main() async {
@@ -47,7 +65,10 @@ class MyApp extends StatelessWidget {
           navigatorKey: Keys.navigatorKey,
           title: 'Da Studio Assessment',
           theme: appThemeData,
-          home: const LoginScreen(),
+          home: BlocProvider(
+            create: (context) => HomePageCubit(),
+            child: const HomePageScreen(),
+          ),
         );
       },
     );

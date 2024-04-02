@@ -1,5 +1,5 @@
 import 'package:da_assessment/core/models/base_model.dart';
-import 'package:da_assessment/feautre/home_page/data/model/topup_beneficiary_model.dart';
+import 'package:da_assessment/feautre/add_beneficary/data/model/topup_beneficiary_model.dart';
 import 'package:da_assessment/feautre/home_page/domain/entity/user_entity.dart';
 
 class UserModel extends BaseModel<UserEntity> {

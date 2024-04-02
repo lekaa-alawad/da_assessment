@@ -1,5 +1,5 @@
 import 'package:da_assessment/core/entites/base_entity.dart';
-import 'package:da_assessment/feautre/home_page/domain/entity/topup_beneficiary_entity.dart';
+import 'package:da_assessment/feautre/add_beneficary/domain/entity/topup_beneficiary_entity.dart';
 
 class UserEntity extends BaseEntity {
   final String id;

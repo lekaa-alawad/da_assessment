@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/ui/no_data_widget.dart';
-import '../../domain/entity/topup_beneficiary_entity.dart';
+import '../../../add_beneficary/domain/entity/topup_beneficiary_entity.dart';
 
 class MobileRechargeTab extends StatelessWidget {
   const MobileRechargeTab({super.key, required this.topUpBeneficiaries});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui/theme/app_theme.dart';
+import '../../../../core/ui/theme/decorations.dart';
 
 class RechargeCard extends StatelessWidget {
   final String name;
@@ -30,15 +30,7 @@ class RechargeCard extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [primaryContainer, primaryContainer.withOpacity(0.4)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: const [0.6, 1.0],
-                ),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
+              decoration: buttonDecoration,
               child: ConstrainedBox(
                 constraints: const BoxConstraints.tightFor(height: 25.0),
                 child: TextButton(

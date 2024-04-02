@@ -1,5 +1,5 @@
 import 'package:da_assessment/core/models/base_model.dart';
-import 'package:da_assessment/feautre/home_page/domain/entity/topup_beneficiary_entity.dart';
+import 'package:da_assessment/feautre/add_beneficary/domain/entity/topup_beneficiary_entity.dart';
 
 class TopUpBeneficiaryModel extends BaseModel<TopUpBeneficiaryEntity> {
   final String nickname;
