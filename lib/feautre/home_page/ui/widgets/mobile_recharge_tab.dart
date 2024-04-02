@@ -23,6 +23,7 @@ class MobileRechargeTab extends StatelessWidget {
                 itemBuilder: (context, index) => RechargeCard(
                       name: topUpBeneficiaries[index].nickname,
                       number: topUpBeneficiaries[index].phoneNumber,
+                      id: topUpBeneficiaries[index].id,
                     ))
             : const NoDataWidget(),
       ),

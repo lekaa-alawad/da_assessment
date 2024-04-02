@@ -5,8 +5,9 @@ import '../../../../core/ui/theme/decorations.dart';
 class RechargeCard extends StatelessWidget {
   final String name;
   final String number;
+  final int id;
 
-  const RechargeCard({super.key, required this.name, required this.number});
+  const RechargeCard({super.key, required this.name, required this.number, required this.id});
 
   @override
   Widget build(BuildContext context) {
