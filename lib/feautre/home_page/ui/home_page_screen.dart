@@ -3,6 +3,7 @@ import 'package:da_assessment/core/ui/dialogs/dialogs.dart';
 import 'package:da_assessment/core/utils/navigation.dart';
 import 'package:da_assessment/feautre/home_page/cubits/home_page_cubit.dart';
 import 'package:da_assessment/feautre/home_page/ui/widgets/mobile_recharge_tab.dart';
+import 'package:da_assessment/feautre/transaction_history/ui/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,12 +45,12 @@ class HomePageScreen extends StatelessWidget {
                         buildTabBarView(context),
                         // _buildTopUpBeneficiaries(user),
                         const SizedBox(height: 16.0),
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //     // Handle "Add Beneficiary" button press
-                        //   },
-                        //   child: const Text('Browse Beneficiaries'),
-                        // ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigation.push(const TransactionHistoryScreen());
+                          },
+                          child: const Text('Browse Transaction History'),
+                        ),
                       ],
                     ),
                   ),
