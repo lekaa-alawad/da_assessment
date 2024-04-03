@@ -6,6 +6,7 @@ const Color secondaryContainer = Colors.grey;
 const Color secondary = Color.fromRGBO(98, 113, 156, 1);
 
 final appThemeData = ThemeData(
+  appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: secondary), color: primary),
   // Define your color palette
   colorScheme: const ColorScheme.light(
     primary: primary,

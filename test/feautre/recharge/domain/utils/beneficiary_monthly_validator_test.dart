@@ -5,12 +5,12 @@ void main() {
   group('BeneficiaryMonthlyLimitValidator', () {
     test('should return true when limit is exceeded', () {
       final validator = BeneficiaryMonthlyLimitValidator(100, 50);
-      expect(validator.validate(), isFalse);
+      expect(validator.isValid(), isFalse);
     });
 
     test('should return false when limit is not exceeded', () {
       final validator = BeneficiaryMonthlyLimitValidator(50, 100);
-      expect(validator.validate(), isTrue);
+      expect(validator.isValid(), isTrue);
     });
   });
 }

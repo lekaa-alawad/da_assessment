@@ -5,12 +5,12 @@ void main() {
   group('SufficientBalanceValidator', () {
     test('should return true when balance is sufficient', () {
       final validator = SufficientBalanceValidator(100.0, 50);
-      expect(validator.validate(), isTrue);
+      expect(validator.isValid(), isTrue);
     });
 
     test('should return false when balance is insufficient', () {
       final validator = SufficientBalanceValidator(50.0, 100);
-      expect(validator.validate(), isFalse);
+      expect(validator.isValid(), isFalse);
     });
   });
 }

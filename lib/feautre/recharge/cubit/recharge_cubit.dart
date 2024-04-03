@@ -5,6 +5,7 @@ import 'package:da_assessment/feautre/recharge/domain/entity/topup_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/constant/constant.dart';
 import '../../../core/errors/base_error.dart';
 import '../../../core/ui/dialogs/dialogs.dart';
 import '../../../main.dart';
@@ -23,9 +24,10 @@ class RechargeCubit extends Cubit<RechargeState> {
       Dialogs.showErrorSnackBar(message: 'Please select recharge amount');
       emit(RechargeError(error: CustomError(message: 'Please select recharge amount')));
     } else {
+      final rechargeAmountWithFees = rechargeAmount.amount + transactionFee;
       final RechargeValidatorResult result = RechargeValidator(userEntity: userEntity).validateRecharge(
         beneficiaryId: beneficiaryId,
-        rechargeAmount: rechargeAmount.amount,
+        rechargeAmount: rechargeAmountWithFees,
       );
       if (result.isValid) {
         final apiResult = await RechargeUseCase(getIt.get<ConcreteTopUpRepository>()).call(

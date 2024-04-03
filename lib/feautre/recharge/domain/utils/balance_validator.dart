@@ -1,13 +1,11 @@
-class SufficientBalanceValidator {
+import 'package:da_assessment/feautre/recharge/domain/utils/validator_interface.dart';
+
+class SufficientBalanceValidator extends ValidatorInterface {
   final double balance;
   final int rechargeAmount;
 
   SufficientBalanceValidator(this.balance, this.rechargeAmount);
 
-  bool validate() {
-    if (balance < rechargeAmount) {
-      return false;
-    }
-    return true;
-  }
+  @override
+  bool isValid() => balance < rechargeAmount ? false : true;
 }

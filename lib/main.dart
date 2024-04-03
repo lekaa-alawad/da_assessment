@@ -2,6 +2,8 @@ import 'package:da_assessment/feautre/add_beneficary/data/data_source/concrete_b
 import 'package:da_assessment/feautre/add_beneficary/data/repository/beneficiary_reopsitory.dart';
 import 'package:da_assessment/feautre/recharge/data/data_source/concrete_topup_remote_datasource.dart';
 import 'package:da_assessment/feautre/recharge/data/repository/concrete_topup_repository.dart';
+import 'package:da_assessment/feautre/transaction_history/data/data_source/concrete_transaction_remote_datasource.dart';
+import 'package:da_assessment/feautre/transaction_history/data/repository/concrete_transaction_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
@@ -26,11 +28,17 @@ void diSetup() {
   getIt.registerLazySingleton(() => ConcreteAuthRemoteDataSource());
   getIt.registerLazySingleton(() => ConcreteBeneficiaryRemoteDataSource());
   getIt.registerLazySingleton(() => ConcreteTopUpRemoteDataSource());
+  getIt.registerLazySingleton(() => ConcreteTransactionRemoteDataSource());
 
   //repositories
   getIt.registerLazySingleton(
     () => ConcreteUserRepository(
       remoteDataSource: getIt.get<ConcreteUserRemoteDataSource>(),
+    ),
+  );
+  getIt.registerLazySingleton(
+    () => ConcreteTransactionRepository(
+      transactionRemoteDataSource: getIt.get<ConcreteTransactionRemoteDataSource>(),
     ),
   );
   getIt.registerLazySingleton(

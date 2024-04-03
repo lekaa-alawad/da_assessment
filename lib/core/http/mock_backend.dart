@@ -7,7 +7,9 @@ import 'package:da_assessment/feautre/add_beneficary/domain/usecase/add_benefici
 import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:da_assessment/feautre/recharge/domain/usecase/recharge_usecase.dart';
+import 'package:da_assessment/feautre/transaction_history/data/model/transaction_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:intl/intl.dart';
 
 import '../../feautre/home_page/data/model/user_model.dart';
 import '../../feautre/recharge/data/model/topup_model.dart';
@@ -27,7 +29,7 @@ class BackEndService {
     id: '1',
     email: 'lekaa.alawad@gmail.com',
     name: 'leka',
-    balance: 10,
+    balance: 1000,
     isVerified: true,
     topUpBeneficiaries: [
       TopUpBeneficiaryModel(
@@ -69,6 +71,8 @@ class BackEndService {
     TopUpModel(id: 6, amount: 100),
   ];
 
+  final List<TransactionModel> _transactions = [];
+
   late final TopUpResponseModel _responseModel = TopUpResponseModel(topUpOptions: _topUps);
 
   Future<Either<BaseError, Data>> login<Data>({required LogInParams params}) async {
@@ -103,11 +107,12 @@ class BackEndService {
   }
 
   Future<Either<BaseError, Data>> recharge<Data>({required RechargeParams params}) async {
-    final RechargeValidatorResult result = RechargeValidator(userModel: _userModel).validateRecharge(
-      beneficiaryId: params.beneficiaryId,
-      rechargeAmount: params.rechargeAmountId,
-    );
     TopUpModel selectedTopUp = _topUps.firstWhere((element) => element.id == params.rechargeAmountId);
+    int rechargeAmount = selectedTopUp.amount + transactionFee;
+    final RechargeValidatorResult result = RechargeValidator(userEntity: _userModel.toEntity()).validateRecharge(
+      beneficiaryId: params.beneficiaryId,
+      rechargeAmount: rechargeAmount,
+    );
     if (!result.isValid) {
       return Left(CustomError(message: result.message));
     }
@@ -120,8 +125,24 @@ class BackEndService {
         _userModel.topUpBeneficiaries.firstWhere((element) => element.id == params.beneficiaryId);
     beneficiary.monthlyTopUpAmount += selectedTopUp.amount;
     //update last transaction
-    beneficiary.lastTransaction = DateTime.now();
+    DateTime transactionDate = DateTime.now();
+    beneficiary.lastTransaction = transactionDate;
+
+    final dateFormat = DateFormat('yy/MM/dd hh:mm');
+    final formattedDate = dateFormat.format(DateTime.parse(transactionDate.toIso8601String()));
+
+    _transactions.add(TransactionModel(
+      beneficiaryName: beneficiary.nickname,
+      beneficiaryPhone: beneficiary.phoneNumber,
+      beneficiaryId: beneficiary.id.toString(),
+      amount: selectedTopUp.amount.toString(),
+      date: formattedDate,
+    ));
 
     return Right(selectedTopUp as Data);
+  }
+
+  Either<BaseError, TransactionResponseModel> getTransactions() {
+    return Right(TransactionResponseModel(transactions: _transactions));
   }
 }
