@@ -8,9 +8,12 @@ import 'dart:async' as _i4;
 import 'package:da_assessment/core/errors/base_error.dart' as _i5;
 import 'package:da_assessment/core/http/http_method.dart' as _i9;
 import 'package:da_assessment/core/responses/api_response.dart' as _i8;
-import 'package:da_assessment/feautre/home_page/data/data_source/concrete_user_remote_datasource.dart' as _i3;
-import 'package:da_assessment/feautre/home_page/data/model/user_model.dart' as _i6;
-import 'package:da_assessment/feautre/home_page/domain/usecase/get_user_data_usecase.dart' as _i7;
+import 'package:da_assessment/feautre/home_page/data/data_source/concrete_user_remote_datasource.dart'
+    as _i3;
+import 'package:da_assessment/feautre/home_page/data/model/user_model.dart'
+    as _i6;
+import 'package:da_assessment/feautre/home_page/domain/usecase/get_user_data_usecase.dart'
+    as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -40,19 +43,22 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 /// A class which mocks [ConcreteUserRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConcreteUserRemoteDataSource extends _i1.Mock implements _i3.ConcreteUserRemoteDataSource {
+class MockConcreteUserRemoteDataSource extends _i1.Mock
+    implements _i3.ConcreteUserRemoteDataSource {
   MockConcreteUserRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.BaseError, _i6.UserModel>> getUser(_i7.GetUserParams? params) => (super.noSuchMethod(
+  _i4.Future<_i2.Either<_i5.BaseError, _i6.UserModel>> getUser(
+          _i7.GetUserParams? params) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getUser,
           [params],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.BaseError, _i6.UserModel>>.value(_FakeEither_0<_i5.BaseError, _i6.UserModel>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, _i6.UserModel>>.value(
+            _FakeEither_0<_i5.BaseError, _i6.UserModel>(
           this,
           Invocation.method(
             #getUser,
@@ -62,7 +68,8 @@ class MockConcreteUserRemoteDataSource extends _i1.Mock implements _i3.ConcreteU
       ) as _i4.Future<_i2.Either<_i5.BaseError, _i6.UserModel>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.BaseError, Data>> request<Data, Response extends _i8.ApiResponse<Data>>({
+  _i4.Future<_i2.Either<_i5.BaseError, Data>>
+      request<Data, Response extends _i8.ApiResponse<Data>>({
     required Response Function(Map<String, dynamic>)? converter,
     required _i9.HttpTypeMethod? method,
     required String? url,
@@ -70,35 +77,36 @@ class MockConcreteUserRemoteDataSource extends _i1.Mock implements _i3.ConcreteU
     Map<String, dynamic>? data,
     bool? withAuthentication = false,
   }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #request,
-          [],
-          {
-            #converter: converter,
-            #method: method,
-            #url: url,
-            #queryParameters: queryParameters,
-            #data: data,
-            #withAuthentication: withAuthentication,
-          },
-        ),
-        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(_FakeEither_0<_i5.BaseError, Data>(
-          this,
-          Invocation.method(
-            #request,
-            [],
-            {
-              #converter: converter,
-              #method: method,
-              #url: url,
-              #queryParameters: queryParameters,
-              #data: data,
-              #withAuthentication: withAuthentication,
-            },
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.BaseError, Data>>);
+          (super.noSuchMethod(
+            Invocation.method(
+              #request,
+              [],
+              {
+                #converter: converter,
+                #method: method,
+                #url: url,
+                #queryParameters: queryParameters,
+                #data: data,
+                #withAuthentication: withAuthentication,
+              },
+            ),
+            returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(
+                _FakeEither_0<_i5.BaseError, Data>(
+              this,
+              Invocation.method(
+                #request,
+                [],
+                {
+                  #converter: converter,
+                  #method: method,
+                  #url: url,
+                  #queryParameters: queryParameters,
+                  #data: data,
+                  #withAuthentication: withAuthentication,
+                },
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.BaseError, Data>>);
 
   @override
   _i4.Future<_i2.Either<_i5.BaseError, List<Data>>> requestList<Data>({
@@ -122,7 +130,8 @@ class MockConcreteUserRemoteDataSource extends _i1.Mock implements _i3.ConcreteU
             #withAuthentication: withAuthentication,
           },
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.BaseError, List<Data>>>.value(_FakeEither_0<_i5.BaseError, List<Data>>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, List<Data>>>.value(
+            _FakeEither_0<_i5.BaseError, List<Data>>(
           this,
           Invocation.method(
             #requestList,
@@ -161,7 +170,8 @@ class MockConcreteUserRemoteDataSource extends _i1.Mock implements _i3.ConcreteU
             #withAuthentication: withAuthentication,
           },
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(_FakeEither_0<_i5.BaseError, Data>(
+        returnValue: _i4.Future<_i2.Either<_i5.BaseError, Data>>.value(
+            _FakeEither_0<_i5.BaseError, Data>(
           this,
           Invocation.method(
             #nonStructuredRequest,

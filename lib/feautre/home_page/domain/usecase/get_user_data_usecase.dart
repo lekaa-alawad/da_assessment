@@ -17,6 +17,7 @@ class GetUserUseCase extends UseCase<UserEntity, GetUserParams> {
 
   @override
   Future<Result<UserEntity>> call({required GetUserParams params}) {
+    print('from getUser usecase');
     return repository.getUserData(params: params);
   }
 }

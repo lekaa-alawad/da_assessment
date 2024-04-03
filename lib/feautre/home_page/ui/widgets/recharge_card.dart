@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/ui/dialogs/dialogs.dart';
 import '../../../../core/ui/theme/decorations.dart';
+import '../../../recharge/ui/recharge_ui.dart';
+import '../../cubits/home_page_cubit.dart';
 
 class RechargeCard extends StatelessWidget {
   final String name;
@@ -40,7 +44,15 @@ class RechargeCard extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                   ),
                   onPressed: () {
-                    // Implement recharge functionality
+                    Dialogs.showQuestion(
+                      context,
+                      title: "Recharge",
+                      subtitle: "Choose the amount to recharge",
+                      content: BlocProvider.value(
+                        value: context.read<HomePageCubit>(),
+                        child: RechargeDialog(id: id),
+                      ),
+                    );
                   },
                   child: Text(
                     'Recharge now',

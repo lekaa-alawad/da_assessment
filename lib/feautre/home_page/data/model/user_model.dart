@@ -6,7 +6,7 @@ class UserModel extends BaseModel<UserEntity> {
   final String id;
   final String email;
   final String name;
-  final double balance;
+  double balance;
   final bool isVerified;
   final List<TopUpBeneficiaryModel> topUpBeneficiaries;
   List<TopUpBeneficiaryModel>? historyTopUpBeneficiaries;

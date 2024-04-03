@@ -1,17 +1,15 @@
-import 'package:da_assessment/core/boilerplate/get_model/widgets/get_model.dart';
 import 'package:da_assessment/core/ui/custom_appbar.dart';
 import 'package:da_assessment/core/ui/dialogs/dialogs.dart';
 import 'package:da_assessment/core/utils/navigation.dart';
 import 'package:da_assessment/feautre/home_page/cubits/home_page_cubit.dart';
-import 'package:da_assessment/feautre/home_page/domain/usecase/get_user_data_usecase.dart';
 import 'package:da_assessment/feautre/home_page/ui/widgets/mobile_recharge_tab.dart';
-import 'package:da_assessment/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/ui/general_error_widget.dart';
+import '../../../core/ui/loading.dart';
 import '../../add_beneficary/domain/entity/topup_beneficiary_entity.dart';
 import '../../add_beneficary/ui/add_beneficary_screen.dart';
-import '../data/repository/concrete_user_repository.dart';
 import '../domain/entity/user_entity.dart';
 
 class HomePageScreen extends StatelessWidget {
@@ -26,41 +24,50 @@ class HomePageScreen extends StatelessWidget {
         body: BlocConsumer<HomePageCubit, HomePageState>(
           listener: (context, state) {},
           builder: (context, state) {
-            return GetModel<UserEntity>(
-              onSuccess: (UserEntity userEntity) => context.read<HomePageCubit>().setUser(userEntity),
-              useCaseCallBack: () => GetUserUseCase(getIt.get<ConcreteUserRepository>()).call(params: GetUserParams()),
-              modelBuilder: (UserEntity user) {
-                return DefaultTabController(
-                  length: 2,
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildUserInfo(context.read<HomePageCubit>().userEntity, context),
-                          const SizedBox(height: 16.0),
-                          _buildBalance(context.read<HomePageCubit>().userEntity, context),
-                          const SizedBox(height: 24.0),
-                          buildBeneficiariesHeader(context),
-                          const SizedBox(height: 8.0),
-                          buildTabBar(),
-                          buildTabBarView(context),
-                          // _buildTopUpBeneficiaries(user),
-                          const SizedBox(height: 16.0),
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     // Handle "Add Beneficiary" button press
-                          //   },
-                          //   child: const Text('Browse Beneficiaries'),
-                          // ),
-                        ],
-                      ),
+            if (state is GetUserSuccessState) {
+              return DefaultTabController(
+                length: 2,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildUserInfo(context.read<HomePageCubit>().userEntity, context),
+                        const SizedBox(height: 16.0),
+                        _buildBalance(context.read<HomePageCubit>().userEntity, context),
+                        const SizedBox(height: 24.0),
+                        buildBeneficiariesHeader(context),
+                        const SizedBox(height: 8.0),
+                        buildTabBar(),
+                        buildTabBarView(context),
+                        // _buildTopUpBeneficiaries(user),
+                        const SizedBox(height: 16.0),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     // Handle "Add Beneficiary" button press
+                        //   },
+                        //   child: const Text('Browse Beneficiaries'),
+                        // ),
+                      ],
                     ),
                   ),
-                );
-              },
-            );
+                ),
+              );
+            } else if (state is GetUserLoadingState) {
+              return const Center(
+                child: LoadingIndicator(),
+              );
+            } else if (state is GetUserErrorState) {
+              return GeneralErrorWidget(
+                message: state.error.toString(),
+                onTap: () {
+                  context.read<HomePageCubit>().getUser();
+                },
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
           },
         ));
   }
