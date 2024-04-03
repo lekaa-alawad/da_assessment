@@ -9,32 +9,35 @@ class TransactionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Text(transaction.beneficiaryName[0]),
-        ),
-        title: Text(transaction.beneficiaryName),
-        subtitle: Text('${transaction.beneficiaryPhone} '),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              '\$${transaction.amount}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: ListTile(
+          leading: CircleAvatar(
+            child: Text(transaction.beneficiaryName[0]),
+          ),
+          title: Text(transaction.beneficiaryName),
+          subtitle: Text('${transaction.beneficiaryPhone} '),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '\$${transaction.amount}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
-            ),
-            Text(
-              transaction.date,
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+              Text(
+                transaction.date,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

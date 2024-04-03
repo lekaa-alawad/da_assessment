@@ -45,12 +45,7 @@ class HomePageScreen extends StatelessWidget {
                         buildTabBarView(context),
                         // _buildTopUpBeneficiaries(user),
                         const SizedBox(height: 16.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigation.push(const TransactionHistoryScreen());
-                          },
-                          child: const Text('Browse Transaction History'),
-                        ),
+                        buildHistoryButton(),
                       ],
                     ),
                   ),
@@ -72,6 +67,15 @@ class HomePageScreen extends StatelessWidget {
             }
           },
         ));
+  }
+
+  ElevatedButton buildHistoryButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigation.push(const TransactionHistoryScreen());
+      },
+      child: const Text('Browse Transaction History'),
+    );
   }
 
   ConstrainedBox buildTabBarView(BuildContext context) {
