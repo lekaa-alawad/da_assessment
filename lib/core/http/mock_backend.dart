@@ -5,6 +5,7 @@ import 'package:da_assessment/core/errors/custom_error.dart';
 import 'package:da_assessment/feautre/add_beneficary/data/model/topup_beneficiary_model.dart';
 import 'package:da_assessment/feautre/add_beneficary/domain/usecase/add_beneficiary_usecase.dart';
 import 'package:da_assessment/feautre/log_in/data/model/login_response_model.dart';
+import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:da_assessment/feautre/recharge/domain/usecase/recharge_usecase.dart';
 import 'package:dartz/dartz.dart';
 
@@ -70,8 +71,12 @@ class BackEndService {
 
   late final TopUpResponseModel _responseModel = TopUpResponseModel(topUpOptions: _topUps);
 
-  Future<Either<BaseError, Data>> login<Data>() async {
-    return Right(_loginModel as Data);
+  Future<Either<BaseError, Data>> login<Data>({required LogInParams params}) async {
+    if (params.email.toLowerCase() == 'lekaa.alawad@gmail.com' && params.password == '123456') {
+      return Right(_loginModel as Data);
+    } else {
+      return Left(CustomError(message: 'Invalid email or password'));
+    }
   }
 
   Future<Either<BaseError, Data>> getUser<Data>() async {

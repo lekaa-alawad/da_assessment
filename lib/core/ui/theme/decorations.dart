@@ -7,7 +7,7 @@ final buttonDecoration = BoxDecoration(
     colors: [primaryContainer, primaryContainer.withOpacity(0.4)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    stops: const [0.6, 1.0],
+    stops: const [0.7, 1.0],
   ),
   borderRadius: BorderRadius.circular(20.0),
 );

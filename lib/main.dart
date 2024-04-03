@@ -1,11 +1,8 @@
 import 'package:da_assessment/feautre/add_beneficary/data/data_source/concrete_beneficiary_datasource.dart';
 import 'package:da_assessment/feautre/add_beneficary/data/repository/beneficiary_reopsitory.dart';
-import 'package:da_assessment/feautre/home_page/cubits/home_page_cubit.dart';
-import 'package:da_assessment/feautre/home_page/ui/home_page_screen.dart';
 import 'package:da_assessment/feautre/recharge/data/data_source/concrete_topup_remote_datasource.dart';
 import 'package:da_assessment/feautre/recharge/data/repository/concrete_topup_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,6 +13,7 @@ import 'feautre/home_page/data/data_source/concrete_user_remote_datasource.dart'
 import 'feautre/home_page/data/repository/concrete_user_repository.dart';
 import 'feautre/log_in/data/data_source/concrete_auth_datasource.dart';
 import 'feautre/log_in/data/repository/concrete_auth_repository.dart';
+import 'feautre/log_in/ui/login_screen.dart';
 
 final getIt = GetIt.instance;
 
@@ -74,10 +72,7 @@ class MyApp extends StatelessWidget {
           navigatorKey: Keys.navigatorKey,
           title: 'Da Studio Assessment',
           theme: appThemeData,
-          home: BlocProvider(
-            create: (context) => HomePageCubit()..getUser(),
-            child: const HomePageScreen(),
-          ),
+          home: const LoginScreen(),
         );
       },
     );

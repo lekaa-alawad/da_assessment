@@ -24,7 +24,8 @@ class HomePageScreen extends StatelessWidget {
         body: BlocConsumer<HomePageCubit, HomePageState>(
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is GetUserSuccessState) {
+            print("$state from bloc");
+            if (state is GetUserSuccessState || state is UpdateUserState) {
               return DefaultTabController(
                 length: 2,
                 child: SingleChildScrollView(
@@ -131,8 +132,11 @@ class HomePageScreen extends StatelessWidget {
           ),
           onTap: () {
             if (context.read<HomePageCubit>().userEntity.topUpBeneficiaries.length < 5) {
-              Navigation.push(const AddBeneficiary())
-                  ?.then((value) => context.read<HomePageCubit>().addBeneficiary(value as TopUpBeneficiaryEntity));
+              Navigation.push(const AddBeneficiary())?.then((value) {
+                if (value != null) {
+                  context.read<HomePageCubit>().addBeneficiary(value as TopUpBeneficiaryEntity);
+                }
+              });
             } else {
               Dialogs.showErrorSnackBar(message: 'Can\'t add more than 5 Beneficiaries');
             }

@@ -10,6 +10,6 @@ import 'auth_remote_datasource.dart';
 class ConcreteAuthRemoteDataSource extends AuthRemoteDataSource {
   @override
   Future<Either<BaseError, LoginResponseModel>> login(LogInParams params) {
-    return getIt.get<BackEndService>().login();
+    return getIt.get<BackEndService>().login(params: params);
   }
 }

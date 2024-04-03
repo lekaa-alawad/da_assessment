@@ -4,6 +4,7 @@ import 'package:da_assessment/feautre/log_in/data/repository/concrete_auth_repos
 import 'package:da_assessment/feautre/log_in/domain/entity/login_response_entity.dart';
 import 'package:da_assessment/feautre/log_in/domain/usecase/log_in_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/boilerplate/create_model/widgets/create_model.dart';
 import '../../../core/ui/custom_appbar.dart';
@@ -13,6 +14,7 @@ import '../../../core/utils/navigation.dart';
 import '../../../core/utils/validators/base_validator.dart';
 import '../../../core/utils/validators/required_validator.dart';
 import '../../../main.dart';
+import '../../home_page/cubits/home_page_cubit.dart';
 import '../../home_page/ui/home_page_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -61,6 +63,8 @@ class _LoginScreenState extends State<LoginScreen> with FormStateMinxin {
                   labelText: 'Password',
                   textEditingController: form.controllers[1],
                   focusNode: form.nodes[1],
+                  useObscure: true,
+                  isSuffixIcon: true,
                   validator: (value) {
                     return BaseValidator.validateValue(
                       context,
@@ -77,7 +81,10 @@ class _LoginScreenState extends State<LoginScreen> with FormStateMinxin {
                     return form.validate();
                   },
                   onSuccess: (LoginResponseEntity model) {
-                    Navigation.pushReplacement(const HomePageScreen());
+                    Navigation.pushReplacement(BlocProvider(
+                      create: (context) => HomePageCubit()..getUser(),
+                      child: const HomePageScreen(),
+                    ));
                   },
                   useCaseCallBack: (model) => LogInUseCase(getIt.get<ConcreteAuthRepository>())
                       .call(params: LogInParams(email: form.controllers[0].text, password: form.controllers[1].text)),

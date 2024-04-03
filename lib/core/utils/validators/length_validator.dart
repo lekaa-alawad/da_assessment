@@ -9,11 +9,12 @@ class LengthValidator extends BaseValidator {
 
   @override
   String getMessage(BuildContext context) {
-    return ' ${('length')} $length ${('characters')}';
+    return ' ${('Max length is')} $length ${('characters')}';
   }
 
   @override
   bool validate(String value) {
+    // include length value ex if length is 20 then 20 is accepted as string length
     return value.length == length || value.length < length;
   }
 }
